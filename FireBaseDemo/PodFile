@@ -1,0 +1,31 @@
+
+platform :ios, '8.0'
+def available_pods
+use_frameworks!
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'EZSwiftExtensions'
+pod 'ObjectMapper', '~> 2.2'
+pod 'Bolts'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+
+end
+
+target 'FireBaseDemo' do
+# Comment this line if you're not using Swift and don't want to use dynamic frameworks
+available_pods
+# Pods for SweatBath
+target 'FireBaseDemoTests' do
+inherit! :search_paths
+available_pods
+# Pods for testing
+end
+
+target 'FireBaseDemoUITests' do
+inherit! :search_paths
+available_pods
+# Pods for testing
+end
+end
+
