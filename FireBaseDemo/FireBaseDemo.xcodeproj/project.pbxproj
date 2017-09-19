@@ -10,6 +10,8 @@
 		2154AD6AB1BA7775D4B466F9 /* Pods_FireBaseDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A81931E0BD25FE2DDDEE82 /* Pods_FireBaseDemo.framework */; };
 		2A8349938482F24196F190D9 /* Pods_FireBaseDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22DA9EB85F49BCC2FFEA8834 /* Pods_FireBaseDemoUITests.framework */; };
 		CCDBBFABA3ACA3A13A862A2C /* Pods_FireBaseDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A27261F0532A787541115A6B /* Pods_FireBaseDemoTests.framework */; };
+		F165C3071F70F72000315E18 /* CustomNavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C3061F70F72000315E18 /* CustomNavigationBarViewController.swift */; };
+		F165C3091F71136400315E18 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C3081F71136400315E18 /* Constant.swift */; };
 		F18C0A521F66514A002AAB7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C0A511F66514A002AAB7C /* AppDelegate.swift */; };
 		F18C0A541F66514A002AAB7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C0A531F66514A002AAB7C /* ViewController.swift */; };
 		F18C0A571F66514B002AAB7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18C0A551F66514B002AAB7C /* Main.storyboard */; };
@@ -52,6 +54,8 @@
 		4C601C9A168DC3FA0D9512C2 /* Pods-FireBaseDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireBaseDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireBaseDemoUITests/Pods-FireBaseDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A27261F0532A787541115A6B /* Pods_FireBaseDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FireBaseDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6069C74C4AD486494987DE0 /* Pods-FireBaseDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireBaseDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireBaseDemo/Pods-FireBaseDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		F165C3061F70F72000315E18 /* CustomNavigationBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomNavigationBarViewController.swift; path = Helper/CustomNavigationBarViewController.swift; sourceTree = "<group>"; };
+		F165C3081F71136400315E18 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = Helper/Constant.swift; sourceTree = "<group>"; };
 		F18C0A4E1F66514A002AAB7C /* FireBaseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireBaseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18C0A511F66514A002AAB7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18C0A531F66514A002AAB7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				F18C0A951F667292002AAB7C /* UIHelper.swift */,
+				F165C3061F70F72000315E18 /* CustomNavigationBarViewController.swift */,
+				F165C3081F71136400315E18 /* Constant.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -518,6 +524,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F18C0A881F666348002AAB7C /* SignUpVC.swift in Sources */,
+				F165C3071F70F72000315E18 /* CustomNavigationBarViewController.swift in Sources */,
+				F165C3091F71136400315E18 /* Constant.swift in Sources */,
 				F18C0A941F66727B002AAB7C /* MBProgressHUD.m in Sources */,
 				F18C0A8B1F666A0A002AAB7C /* HomeVC.swift in Sources */,
 				F18C0A541F66514A002AAB7C /* ViewController.swift in Sources */,

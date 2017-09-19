@@ -8,7 +8,7 @@ import FBSDKLoginKit
 import Firebase
 import FirebaseDatabase
 
-class LoginVC: UIViewController {
+class LoginVC: CustomNavigationBarViewController {
 
     
     @IBOutlet weak var textFieldEmail: UITextField!
@@ -18,7 +18,7 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        refLoginUser = Database.database().reference().child("Users");
+        refLoginUser = Database.database().reference().child(FBEntityKey.USERS);
     }
     
     @IBAction func buttonLoginTapped(_ sender: AnyObject) {
@@ -29,8 +29,8 @@ class LoginVC: UIViewController {
         if self.textFieldEmail.text == "" || self.textFieldPassword.text == "" {
             
             //Alert to tell the user that there was an error because they didn't fill anything in the textfields because they didn't fill anything in
-            let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            let alertController = UIAlertController(title: AlertConstant.ERROR, message: AlertConstant.ENTER_EMAIL_PASSWORD, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: AlertConstant.OK, style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
             
@@ -42,9 +42,9 @@ class LoginVC: UIViewController {
 
                 } else {
                     //Tells the user that there is an error and then gets firebase to tell them the error
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: AlertConstant.ERROR, message: error?.localizedDescription, preferredStyle: .alert)
                     
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    let defaultAction = UIAlertAction(title: AlertConstant.OK, style: .cancel, handler: nil)
                     alertController.addAction(defaultAction)
                     
                     self.present(alertController, animated: true, completion: nil)
@@ -83,8 +83,6 @@ class LoginVC: UIViewController {
                     
                     return
                 }
-               
-               // self.navigateToHomeScreen()
             })
             
         }
@@ -93,7 +91,7 @@ class LoginVC: UIViewController {
     func navigateToHomeScreen(userName: String) {
         UIHelper.stopLoadingIndicator(view: self.view)
         let storyBoard = UIStoryboard.mainStoryboard
-        let homeVC = storyBoard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+        let homeVC = storyBoard?.instantiateViewController(withIdentifier: StoryBoardIdentifiers.HOME_VC) as! HomeVC
         homeVC.loggeInUserName = userName
         pushVC(homeVC)
     }
@@ -101,8 +99,7 @@ class LoginVC: UIViewController {
     func getLoginUserName(userEmail: String, userToken: String) {
         refLoginUser.child(userToken).observeSingleEvent(of: .value, with: { (snapshot) in
             let user = snapshot.value as? [String: AnyObject]
-            //print("snapshot has \(String(describing: user?["email"]))")
-            self.navigateToHomeScreen(userName: (user?["user_name"])! as! String)
+            self.navigateToHomeScreen(userName: (user?[FBUserEnityKey.USER_NAME])! as! String)
         })
     }
     

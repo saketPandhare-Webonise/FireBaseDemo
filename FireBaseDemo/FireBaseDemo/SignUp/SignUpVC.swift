@@ -8,7 +8,7 @@ import Firebase
 import EZSwiftExtensions
 import FirebaseDatabase
 
-class SignUpVC: UIViewController {
+class SignUpVC: CustomNavigationBarViewController {
 
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
@@ -25,7 +25,7 @@ class SignUpVC: UIViewController {
     }
     
     func initialSetUp() {
-        self.title = "Sign Up"
+        self.title = NavigationTitle.SignUp
     }
     
     @IBAction func buttonSignUpTapped(_ sender: AnyObject) {
@@ -34,9 +34,9 @@ class SignUpVC: UIViewController {
     
     func createUser() {
         if textFieldEmail.text == "" {
-            let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
+            let alertController = UIAlertController(title: AlertConstant.ERROR, message: AlertConstant.ENTER_EMAIL_PASSWORD, preferredStyle: .alert)
             
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            let defaultAction = UIAlertAction(title: AlertConstant.OK, style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
             present(alertController, animated: true, completion: nil)
@@ -49,9 +49,9 @@ class SignUpVC: UIViewController {
                     self.addUserToFireBaseDB(userEmail: (user?.email)!, userToken: (user?.uid)!)
                     self.navigateToHomeScreen()
                 } else {
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: AlertConstant.ERROR, message: error?.localizedDescription, preferredStyle: .alert)
                     
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    let defaultAction = UIAlertAction(title: AlertConstant.OK, style: .cancel, handler: nil)
                     alertController.addAction(defaultAction)
                     
                     self.present(alertController, animated: true, completion: nil)
@@ -62,15 +62,15 @@ class SignUpVC: UIViewController {
     
     func navigateToHomeScreen() {
         let storyBoard = UIStoryboard.mainStoryboard
-        let homeVC = storyBoard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+        let homeVC = storyBoard?.instantiateViewController(withIdentifier: StoryBoardIdentifiers.HOME_VC) as! HomeVC
         pushVC(homeVC)
     }
     
     
     
     func addUserToFireBaseDB(userEmail: String, userToken: String) {
-        let userInfo = ["id":userToken , "user_name":textFieldUserName.text ?? "Not Provided", "email":userEmail ,] as [String : Any]
-        refSignUpUsers.child("Users").child(userToken).setValue(userInfo)
+        let userInfo = [FBUserEnityKey.USER_ID:userToken , FBUserEnityKey.USER_NAME:textFieldUserName.text ?? StringConstant.NOT_PROVIDED, FBUserEnityKey.EMAIL:userEmail] as [String : Any]
+        refSignUpUsers.child(FBEntityKey.USERS).child(userToken).setValue(userInfo)
     }
 }
 

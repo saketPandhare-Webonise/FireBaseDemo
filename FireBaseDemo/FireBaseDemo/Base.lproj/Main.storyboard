@@ -37,9 +37,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wOz-VU-H44">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wOz-VU-H44">
                                 <rect key="frame" x="50" y="114" width="275" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -101,6 +100,9 @@
                             <constraint firstItem="vgW-EP-zQh" firstAttribute="top" secondItem="7aD-4q-Rrj" secondAttribute="bottom" constant="28" id="AiM-li-s2s"/>
                             <constraint firstAttribute="trailing" secondItem="7aD-4q-Rrj" secondAttribute="trailing" constant="50" id="ImK-iX-nQ4"/>
                             <constraint firstItem="ew4-Yu-88I" firstAttribute="centerX" secondItem="dBl-kh-L6r" secondAttribute="centerX" id="Itc-dA-8bI"/>
+                            <constraint firstItem="wOz-VU-H44" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="OUq-yJ-try"/>
+                            <constraint firstItem="wOz-VU-H44" firstAttribute="leading" secondItem="7aD-4q-Rrj" secondAttribute="leading" id="Sqq-nr-dsf"/>
+                            <constraint firstItem="wOz-VU-H44" firstAttribute="trailing" secondItem="7aD-4q-Rrj" secondAttribute="trailing" id="Vsf-yk-zID"/>
                             <constraint firstItem="dBl-kh-L6r" firstAttribute="leading" secondItem="vgW-EP-zQh" secondAttribute="leading" id="Wf6-jF-swI"/>
                             <constraint firstItem="dBl-kh-L6r" firstAttribute="trailing" secondItem="vgW-EP-zQh" secondAttribute="trailing" id="aPE-04-3Ek"/>
                             <constraint firstItem="dBl-kh-L6r" firstAttribute="top" secondItem="vgW-EP-zQh" secondAttribute="bottom" constant="50" id="acJ-Zb-PTR"/>
