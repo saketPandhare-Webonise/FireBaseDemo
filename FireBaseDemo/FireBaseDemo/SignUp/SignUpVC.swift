@@ -21,7 +21,6 @@ class SignUpVC: CustomNavigationBarViewController {
         
         initialSetUp()
         refSignUpUsers = Database.database().reference()
-        
     }
     
     func initialSetUp() {
@@ -60,14 +59,18 @@ class SignUpVC: CustomNavigationBarViewController {
         }
     }
     
+    /// This function is used to navigate user to home screen
     func navigateToHomeScreen() {
         let storyBoard = UIStoryboard.mainStoryboard
         let homeVC = storyBoard?.instantiateViewController(withIdentifier: StoryBoardIdentifiers.HOME_VC) as! HomeVC
         pushVC(homeVC)
     }
     
-    
-    
+    /// This function is used to add user to Firebase DB in USER Table
+    ///
+    /// - Parameters:
+    ///   - userEmail: useremail
+    ///   - userToken: usertoken
     func addUserToFireBaseDB(userEmail: String, userToken: String) {
         let userInfo = [FBUserEnityKey.USER_ID:userToken , FBUserEnityKey.USER_NAME:textFieldUserName.text ?? StringConstant.NOT_PROVIDED, FBUserEnityKey.EMAIL:userEmail] as [String : Any]
         refSignUpUsers.child(FBEntityKey.USERS).child(userToken).setValue(userInfo)

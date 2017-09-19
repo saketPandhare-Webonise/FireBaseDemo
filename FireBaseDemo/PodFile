@@ -10,6 +10,7 @@ pod 'Bolts'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'Firebase/Database'
+pod 'Firebase/Storage'
 end
 
 target 'FireBaseDemo' do

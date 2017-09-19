@@ -6,6 +6,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseStorage
 
 class HomeVC: UIViewController {
     var loggeInUserName: String = ""
@@ -22,6 +23,7 @@ class HomeVC: UIViewController {
     }
     
     
+    /// This function is used to logout user
     func logOutUser() {
         if Auth.auth().currentUser != nil {
             do {
@@ -36,6 +38,28 @@ class HomeVC: UIViewController {
     
     func navigatToRootController() {
         popToRootVC()
-        
+    }
+    
+    
+    @IBAction func buttonUploadImage(_ sender: Any) {
+        uploadMedia(completion: {(photoUrl) in
+            print("photo URL has \(String(describing: photoUrl))")
+      })
+    }
+    
+    
+    func uploadMedia(completion: @escaping (_ url: String?) -> Void) {
+        let storageRef = Storage.storage().reference().child("myImage.png")
+        if let uploadData = UIImageJPEGRepresentation(UIImage.init(named: "GymImage")!, 0.8) {
+            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                if error != nil {
+                    print("error")
+                    completion(nil)
+                } else {
+                    completion((metadata?.downloadURL()?.absoluteString)!)
+                    // your uploaded photo url.
+                }
+            }
+        }
     }
 }

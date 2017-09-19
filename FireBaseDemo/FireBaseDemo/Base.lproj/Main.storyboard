@@ -236,12 +236,25 @@
                                     <action selector="buttonLogOutTapped:" destination="xoa-ya-jLx" eventType="touchUpInside" id="61N-a7-j8m"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sap-W5-S7w">
+                                <rect key="frame" x="50" y="419" width="287" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="Rbh-q9-CWd"/>
+                                    <constraint firstAttribute="width" constant="287" id="ZFd-06-v5f"/>
+                                </constraints>
+                                <state key="normal" title="Upload Image"/>
+                                <connections>
+                                    <action selector="buttonUploadImage:" destination="xoa-ya-jLx" eventType="touchUpInside" id="ThV-9G-E2p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="z58-vY-exd" firstAttribute="centerY" secondItem="mKV-fN-SqA" secondAttribute="centerY" id="C9r-hz-01x"/>
                             <constraint firstAttribute="trailing" secondItem="z58-vY-exd" secondAttribute="trailing" constant="50" id="CpQ-t8-NkO"/>
                             <constraint firstItem="z58-vY-exd" firstAttribute="leading" secondItem="mKV-fN-SqA" secondAttribute="leading" constant="50" id="Ndo-mF-6dI"/>
+                            <constraint firstItem="Sap-W5-S7w" firstAttribute="leading" secondItem="z58-vY-exd" secondAttribute="leading" id="ONq-S1-4Dc"/>
+                            <constraint firstItem="Sap-W5-S7w" firstAttribute="top" secondItem="z58-vY-exd" secondAttribute="bottom" constant="60.5" id="ypT-Xq-NjB"/>
                             <constraint firstItem="z58-vY-exd" firstAttribute="centerX" secondItem="mKV-fN-SqA" secondAttribute="centerX" id="zF2-KN-ZOy"/>
                         </constraints>
                     </view>

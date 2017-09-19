@@ -38,7 +38,7 @@ class LoginVC: CustomNavigationBarViewController {
             UIHelper.startLoadingIndicator(view: self.view)
             Auth.auth().signIn(withEmail: self.textFieldEmail.text!, password: self.textFieldPassword.text!) { (user, error) in
                 if error == nil {
-                    self.getLoginUserName(userEmail: (user?.email)!, userToken: (user?.uid)!)
+                    self.getLoginUserName(userToken: (user?.uid)!)
 
                 } else {
                     //Tells the user that there is an error and then gets firebase to tell them the error
@@ -88,6 +88,9 @@ class LoginVC: CustomNavigationBarViewController {
         }
     }
     
+    /// This function is used to navigate user to HomeScreen
+    ///
+    /// - Parameter userName: username
     func navigateToHomeScreen(userName: String) {
         UIHelper.stopLoadingIndicator(view: self.view)
         let storyBoard = UIStoryboard.mainStoryboard
@@ -96,7 +99,11 @@ class LoginVC: CustomNavigationBarViewController {
         pushVC(homeVC)
     }
     
-    func getLoginUserName(userEmail: String, userToken: String) {
+    
+    /// This function is used to get user details
+    ///
+    /// - Parameter userToken: userToken
+    func getLoginUserName(userToken: String) {
         refLoginUser.child(userToken).observeSingleEvent(of: .value, with: { (snapshot) in
             let user = snapshot.value as? [String: AnyObject]
             self.navigateToHomeScreen(userName: (user?[FBUserEnityKey.USER_NAME])! as! String)
