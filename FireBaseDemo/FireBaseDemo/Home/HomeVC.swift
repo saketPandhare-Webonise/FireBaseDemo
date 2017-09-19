@@ -47,10 +47,10 @@ class HomeVC: UIViewController {
       })
     }
     
-    
+    /// This function is used to upload image 
     func uploadMedia(completion: @escaping (_ url: String?) -> Void) {
         let storageRef = Storage.storage().reference().child("myImage.png")
-        if let uploadData = UIImageJPEGRepresentation(UIImage.init(named: "GymImage")!, 0.8) {
+        if let uploadData = UIImageJPEGRepresentation(UIImage.init(named: "HomeScreen")!, 0.8) {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     print("error")
