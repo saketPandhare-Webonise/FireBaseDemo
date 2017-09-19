@@ -6,18 +6,22 @@
 import UIKit
 import Firebase
 import EZSwiftExtensions
-
+import FirebaseDatabase
 
 class SignUpVC: UIViewController {
 
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
+    @IBOutlet weak var textFieldUserName: UITextField!
     
+    var refSignUpUsers: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initialSetUp()
+        refSignUpUsers = Database.database().reference()
+        
     }
     
     func initialSetUp() {
@@ -42,7 +46,7 @@ class SignUpVC: UIViewController {
             Auth.auth().createUser(withEmail: textFieldEmail.text!, password: textFieldPassword.text!) { (user, error) in
                 UIHelper.stopLoadingIndicator(view: self.view)
                 if error == nil {
-                    print("User ID \(user?.providerID)")
+                    self.addUserToFireBaseDB(userEmail: (user?.email)!, userToken: (user?.uid)!)
                     self.navigateToHomeScreen()
                 } else {
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -60,6 +64,13 @@ class SignUpVC: UIViewController {
         let storyBoard = UIStoryboard.mainStoryboard
         let homeVC = storyBoard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
         pushVC(homeVC)
+    }
+    
+    
+    
+    func addUserToFireBaseDB(userEmail: String, userToken: String) {
+        let userInfo = ["id":userToken , "user_name":textFieldUserName.text ?? "Not Provided", "email":userEmail ,] as [String : Any]
+        refSignUpUsers.child("Users").child(userToken).setValue(userInfo)
     }
 }
 

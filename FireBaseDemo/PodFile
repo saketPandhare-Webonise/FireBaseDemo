@@ -9,7 +9,7 @@ pod 'ObjectMapper', '~> 2.2'
 pod 'Bolts'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
-
+pod 'Firebase/Database'
 end
 
 target 'FireBaseDemo' do

@@ -6,17 +6,19 @@ import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
 import Firebase
+import FirebaseDatabase
 
 class LoginVC: UIViewController {
 
     
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
-    
+    var refLoginUser: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        refLoginUser = Database.database().reference().child("Users");
     }
     
     @IBAction func buttonLoginTapped(_ sender: AnyObject) {
@@ -36,8 +38,8 @@ class LoginVC: UIViewController {
             UIHelper.startLoadingIndicator(view: self.view)
             Auth.auth().signIn(withEmail: self.textFieldEmail.text!, password: self.textFieldPassword.text!) { (user, error) in
                 if error == nil {
-                    print("User ID \(user?.uid)")
-                    self.navigateToHomeScreen()
+                    self.getLoginUserName(userEmail: (user?.email)!, userToken: (user?.uid)!)
+
                 } else {
                     //Tells the user that there is an error and then gets firebase to tell them the error
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -81,16 +83,38 @@ class LoginVC: UIViewController {
                     
                     return
                 }
-                self.navigateToHomeScreen()
+               
+               // self.navigateToHomeScreen()
             })
             
         }
     }
     
-    func navigateToHomeScreen() {
+    func navigateToHomeScreen(userName: String) {
         UIHelper.stopLoadingIndicator(view: self.view)
         let storyBoard = UIStoryboard.mainStoryboard
         let homeVC = storyBoard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+        homeVC.loggeInUserName = userName
         pushVC(homeVC)
     }
+    
+    func getLoginUserName(userEmail: String, userToken: String) {
+        refLoginUser.child(userToken).observeSingleEvent(of: .value, with: { (snapshot) in
+            let user = snapshot.value as? [String: AnyObject]
+            //print("snapshot has \(String(describing: user?["email"]))")
+            self.navigateToHomeScreen(userName: (user?["user_name"])! as! String)
+        })
+    }
+    
+    /*
+    func toGetAllValuesFromFB() {
+        if snapshot.childrenCount > 0 {
+            for users in snapshot.children.allObjects as! [DataSnapshot] {
+                let userObject = users.value as? [String: AnyObject]
+                print("email has \(String(describing: userObject?["email"]))")
+                
+            }
+        }
+    }
+ */
 }

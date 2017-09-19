@@ -8,11 +8,13 @@ import Firebase
 import FirebaseAuth
 
 class HomeVC: UIViewController {
+    var loggeInUserName: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = loggeInUserName
     }
     
     @IBAction func buttonLogOutTapped(_ sender: AnyObject) {
